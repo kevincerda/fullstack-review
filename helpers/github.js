@@ -9,11 +9,11 @@ let getReposByUsername = (username, callback) => {
       'Authorization': `token ${config.TOKEN}`
     }
   };
-  request.get(options, (err, data) => {
+  request.get(options, (err, response, data) => {
     if (err) throw err;
-    console.log('Data: ', data);
-    callback(data);
-  })
+    console.log('Repos: ', JSON.parse(data));
+    callback(JSON.parse(data));
+  });
 }
 
 module.exports.getReposByUsername = getReposByUsername;
