@@ -1,20 +1,21 @@
 const express = require('express');
-const axios = require('axios');
 const parser = require('body-parser');
-const helper = require('../helpers/github.js')
-const save = require('../database/index.js')
+const { getReposByUsername } = require('../helpers/github');
+const { save } = require('../database/index');
+
 let app = express();
+let port = 1128;
 
 app.use(express.static(__dirname + '/../react-client/dist'));
 app.use(parser.json());
-app.use(parser.urlencoded({ extended: false }));
+app.use(parser.urlencoded({ extended: true }));
 
 app.post('/repos', (req, res) => {
-  helper.getReposByUsername(req.body.data, (data) => {
+  getReposByUsername(req.body.data, (data) => {
     //save data using save.save method
   });
   console.log('Requested data: ', req.body.data);
-  req.end('Success');
+  req.end();
 });
 
 app.get('/repos', (req, res) => {
@@ -23,6 +24,5 @@ app.get('/repos', (req, res) => {
   res.send();
 });
 
-let port = 1128;
 
 app.listen(port, () => console.log(`listening on port ${port}`));
