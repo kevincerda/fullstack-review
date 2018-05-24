@@ -1,12 +1,7 @@
 const express = require('express');
 let app = express();
 
-// UNCOMMENT FOR ANGULARJS
-// app.use(express.static(__dirname + '/../angular-client'));
-// app.use(express.static(__dirname + '/../node_modules/angular'));
-
-// UNCOMMENT FOR REACT
-// app.use(express.static(__dirname + '/../react-client/dist'));
+app.use(express.static(__dirname + '/../react-client/dist'));
 
 app.post('/repos', function(req, res) {
   // TODO - your code here!
