@@ -16,7 +16,7 @@ class App extends React.Component {
 
   search (term) {
     console.log(`${term} was searched`);
-    axios.post('/data.json', {
+    axios.post('/repos', {
       search: term
     })
     .then((response) => {
